@@ -12,12 +12,18 @@ public class Restaurant {
         myMenu.addItem(i1);
         myMenu.addItem(i2);
         myMenu.addItem(i3);
+        System.out.println("Trying to add item 2 (Chicken McNuggets) again:");
         myMenu.addItem(i2);
 
+        System.out.println("Full menu:");
         myMenu.listItems();
+        System.out.println("List only menuitem with name McFlurry:");
         myMenu.listItem("McFlurry");
 
+        System.out.println("Remove item with name McFlurry:");
         myMenu.removeItem("McFlurry");
+
+        System.out.println("Full menu:");
         myMenu.listItems();
     }
 }

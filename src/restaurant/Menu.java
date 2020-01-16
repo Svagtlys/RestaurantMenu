@@ -7,43 +7,43 @@ public class Menu {
 
     private String restaurantName;
     private LocalDate lastUpdated;
-    private HashMap<String, MenuItem> menu;
+    private HashMap<String, MenuItem> itemsOnMenu;
 
     public Menu(String restaurantName)
     {
         this.restaurantName = restaurantName;
         this.lastUpdated = LocalDate.now();
-        menu = new HashMap<>();
+        this.itemsOnMenu = new HashMap<>();
     }
 
     public void addItem(String name, String description, String category, double price) //Will change lastUpdated
     {
-        if(menu.containsKey(name)){
+        if(itemsOnMenu.containsKey(name)){
             System.out.println("Item " + name + " already exists:");
             this.listItem(name);
             return;
         }
         this.lastUpdated = LocalDate.now();
         MenuItem newItem = new MenuItem(name, description, category, price);
-        menu.put(name, newItem);
+        itemsOnMenu.put(name, newItem);
     }
 
-    public void addItem(MenuItem i) //Will change lastUpdated
+    public void addItem(MenuItem newItem) //Will change lastUpdated
     {
-        if(menu.containsKey(i.getName())){
-            System.out.println("Item " + i.getName() + " already exists:");
-            this.listItem(i.getName());
+        if(itemsOnMenu.containsKey(newItem.getName())){
+            System.out.println("Item " + newItem.getName() + " already exists:");
+            this.listItem(newItem.getName());
             return;
         }
         this.lastUpdated = LocalDate.now();
-        menu.put(i.getName(), i);
+        itemsOnMenu.put(newItem.getName(), newItem);
     }
 
     public void removeItem(String name) //Removes related item from menu
     {
-        if(menu.containsKey(name))
+        if(itemsOnMenu.containsKey(name))
         {
-            menu.remove(name);
+            itemsOnMenu.remove(name);
             System.out.println("Removed menu item called " + name + ".");
             this.lastUpdated = LocalDate.now();
         } else {
@@ -53,9 +53,9 @@ public class Menu {
 
     public void removeItem(MenuItem i)
     {
-        if(menu.containsKey(i.getName()))
+        if(itemsOnMenu.containsKey(i.getName()))
         {
-            menu.remove(i.getName());
+            itemsOnMenu.remove(i.getName());
             System.out.println("Removed menu item called " + i.getName() + ".");
             this.lastUpdated = LocalDate.now();
         } else {
@@ -71,10 +71,10 @@ public class Menu {
 
     public void listNewItems() //Will update which items are new and then print out new items
     {
-        for(String i: menu.keySet()){
-            if(isNewItem(menu.get(i)))
+        for(String i: itemsOnMenu.keySet()){
+            if(isNewItem(itemsOnMenu.get(i)))
             {
-                System.out.println(i + " : Added " + menu.get(i).getDateCreated());
+                System.out.println(i + " : Added " + itemsOnMenu.get(i).getDateCreated());
             }
         }
     }
@@ -86,17 +86,17 @@ public class Menu {
 
     public void listItems() //Will print out keys in menu
     {
-        for(String i : menu.keySet())
+        for(String i : itemsOnMenu.keySet())
         {
-            System.out.println(menu.get(i).toString());
+            System.out.println(itemsOnMenu.get(i).toString());
         }
     }
 
     public void listItem(String item)
     {
-        if(menu.containsKey(item))
+        if(itemsOnMenu.containsKey(item))
         {
-            System.out.println(menu.get(item).toString());
+            System.out.println(itemsOnMenu.get(item).toString());
         } else {
             System.out.println("Menu item called " + item + " not found.");
         }
