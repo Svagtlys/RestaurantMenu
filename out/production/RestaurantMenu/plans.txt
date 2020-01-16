@@ -15,16 +15,31 @@ Class MenuItem
     public setPrice(double newPrice)
     public setIsNewItem(LocalDate currentDate) //checks if current date is far enough from dateCreated, then sets isNewItem accordingly
 
+    public String toString() //Turns MenuItem data into a string
+    public boolean equals(Object toCompare) //Checks for name equality
+
 Class Menu
     Date lastUpdated
     HashMap<String, MenuItem> menu- Name of item, MenuItem object
 
-    void addItem(name, description, category, price) //Will change lastUpdated
+    public void addItem(name, description, category, price) //adds item and updates date
 
-    void listItems() //Will print out keys in menu
+    public void removeItem(name) //Removes item from menu (if applicable), then updates date if removal successful
 
-    void listNewItems() //Will update which items are new and then print out new items
+    private boolean isNewItem(MenuItem item) //helper method to determine if item was added recently
 
-    void removeItem(name) //Removes related item from menu
+    public void listNewItems() //Will call isNewItem() and then print out new items
+
+    public void listLastUpdated() //Will list the date the menu was last updated
+
+    public void listItems() //Will print out menuItem toStrings
+
+    public void listItem(String item) //will print out single menuItem toString, if in menu
+
+
+
+
+
+
 
     void listLastUpdated() //Will print out the date that the menu was last updated
